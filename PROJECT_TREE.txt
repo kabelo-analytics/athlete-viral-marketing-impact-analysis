@@ -1,0 +1,30 @@
+./
+  - README.md
+  - requirements.txt
+  data/
+    data/raw/
+      - brand_interest_index.csv
+      - calendar_period.csv
+      - campaign_events.csv
+      - funnel_conversions.csv
+      - gym_activity.csv
+    data/processed/
+      - brand_interest_index.csv
+      - dim_channel.csv
+      - dim_period.csv
+      - fact_channel_daily.csv
+      - gym_activity.csv
+  src/
+    - __init__.py
+    - clean_transform.py
+    - generate_data.py
+    - utils.py
+  notebooks/
+    - 01_generate_and_clean.ipynb
+  reports/
+    - 00_executive_summary.md
+    - 01_insights_and_recommendations.md
+    - 02_data_dictionary.md
+  dashboard/
+    - PUT_POWERBI_FILE_HERE.txt
+  assets/
