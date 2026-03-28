@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Enable GitHub Pages
 
 on:
   push:
@@ -9,30 +9,17 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
 jobs:
-  deploy:
+  enable:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Ping
+        run: echo "Actions runner is working"
+
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configure Pages
+      - name: Configure Pages (enables if not active)
         uses: actions/configure-pages@v5
         with:
           enablement: true
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
