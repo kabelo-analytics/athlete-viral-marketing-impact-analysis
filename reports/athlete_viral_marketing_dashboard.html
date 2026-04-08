@@ -666,26 +666,26 @@
   <div class="container">
     <div class="hero-label">Campaign Analytics | Product Analytics</div>
     <h1 class="hero-title">Athlete-Led Viral Marketing<br>Impact Analysis</h1>
-    <p class="hero-subtitle">kabelo-analytics · Synthetic campaign dataset · Power BI + Python</p>
+    <p class="hero-subtitle">kabelo-analytics · Synthetic campaign dataset · packaged tables + HTML dashboard</p>
     <p class="hero-statement">
       Wellness brands increasingly partner with athletes and influencers to drive awareness and acquisition. But reach alone is not the same as results. This project examines whether an athlete-led viral campaign — anchored on TikTok — actually moved the needle across the full acquisition funnel: from impressions to gym memberships.
     </p>
     <div class="hero-stats">
       <div class="hero-stat">
-        <span class="hero-stat-value">7.9M</span>
+        <span class="hero-stat-value">284.2M</span>
         <span class="hero-stat-label">Total Impressions</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-value">5</span>
+        <span class="hero-stat-value">6</span>
         <span class="hero-stat-label">Channels Analysed</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-value">200K</span>
-        <span class="hero-stat-label">Dataset Rows</span>
+        <span class="hero-stat-value">738</span>
+        <span class="hero-stat-label">Daily Channel Rows</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-value">+38pts</span>
-        <span class="hero-stat-label">Brand Lift Signal</span>
+        <span class="hero-stat-value">+32.9pts</span>
+        <span class="hero-stat-label">Campaign Avg vs Pre</span>
       </div>
     </div>
     <div class="hero-links">
@@ -767,8 +767,8 @@
   <section id="data-model" class="page-section">
     <div class="container">
       <p class="section-label">03 — Data Model</p>
-      <h2 class="section-title">Star schema built for BI consumption</h2>
-      <p class="section-body">The dataset follows a star schema designed for direct Power BI consumption. Metric tables join to dimension and proxy tables on shared date and channel keys.</p>
+      <h2 class="section-title">Power BI-friendly reporting model</h2>
+      <p class="section-body">The dataset is organised around `fact_channel_daily` with lightweight channel, period, brand-interest, and gym-activity support tables. It is designed for reporting convenience rather than as a full production-grade star schema.</p>
 
       <div class="schema-diagram">
         <div class="schema-dims">
@@ -873,8 +873,8 @@
         </div>
         <div class="kpi-group" style="background:var(--accent-light);border-color:rgba(37,99,235,0.2);">
           <div class="kpi-group-title">Output Format</div>
-          <div class="kpi-item"><span class="kpi-dot"></span>Star schema for Power BI</div>
-          <div class="kpi-item"><span class="kpi-dot"></span>Python pipeline (pandas, matplotlib)</div>
+          <div class="kpi-item"><span class="kpi-dot"></span>Power BI-friendly packaged tables</div>
+          <div class="kpi-item"><span class="kpi-dot"></span>Notebook + helper scripts for inspection</div>
           <div class="kpi-item"><span class="kpi-dot"></span>Stakeholder-ready HTML report</div>
         </div>
       </div>
@@ -889,8 +889,8 @@
           </div>
         </div>
         <div class="chart-card">
-          <div class="chart-title">Cost Per Membership (CPA) by Channel</div>
-          <div class="chart-subtitle">Spend ÷ memberships acquired — lower is more efficient</div>
+          <div class="chart-title">Cost Per Membership (CPA) by Spend-Bearing Channel</div>
+          <div class="chart-subtitle">Spend ÷ memberships acquired — Website excluded because it carries no media spend</div>
           <div class="chart-wrap">
             <canvas id="cpaChart"></canvas>
           </div>
@@ -908,20 +908,20 @@
 
       <div class="finding-grid">
         <div class="finding-card">
-          <div class="finding-heading">TikTok: reach engine, weak convertor</div>
-          <div class="finding-body">TikTok delivered the highest impressions by a significant margin but the lowest direct conversion efficiency. This is consistent with its structural role as an upper-funnel awareness channel rather than a direct-response acquisition channel.</div>
+          <div class="finding-heading">TikTok delivered scale, not the strongest downstream conversion</div>
+          <div class="finding-body">TikTok generated the highest impressions by a significant margin and the largest absolute membership volume, but its memberships per click trailed Website, Instagram, and YouTube in this synthetic dataset.</div>
         </div>
         <div class="finding-card positive">
-          <div class="finding-heading">Paid search and email led on CPA</div>
-          <div class="finding-body">Despite significantly lower reach volumes, paid search and email produced the lowest cost-per-membership. Their audiences arrive with higher purchase intent, compressing the consideration cycle between click and conversion.</div>
+          <div class="finding-heading">Spend efficiency and conversion efficiency were not the same story</div>
+          <div class="finding-body">Among spend-bearing channels, TikTok posted the lowest reported CPA, while Website acted as the strongest conversion destination and should not be read as a comparable media channel.</div>
         </div>
         <div class="finding-card warn">
           <div class="finding-heading">Brand search index confirmed awareness lift</div>
           <div class="finding-body">Brand search index showed a measurable uplift during the campaign window — suggesting awareness was building even where immediate conversion was not occurring. The lift persisted partially into the post-campaign window.</div>
         </div>
         <div class="finding-card">
-          <div class="finding-heading">Offline lag: ~14 days to membership spike</div>
-          <div class="finding-body">Gym activity data showed a post-campaign lag of approximately two weeks before offline membership spikes appeared — consistent with a consideration-to-action cycle typical of wellness products where physical commitment follows digital intent.</div>
+          <div class="finding-heading">Offline response concentrated around launch week</div>
+          <div class="finding-body">Gym activity and new memberships spiked early in the campaign window, suggesting demand was concentrated around launch rather than appearing on a clean fixed two-week lag.</div>
         </div>
       </div>
 
@@ -951,24 +951,24 @@
       <p class="section-label">06 — Analytical Takeaway</p>
       <h2 class="section-title">Attribution in multi-channel campaigns is rarely clean</h2>
       <p class="section-body">
-        This analysis applied a channel contribution framework rather than last-click attribution — recognising that TikTok's role was upper-funnel seeding rather than direct conversion. The implication for budget allocation: reduce TikTok spend optimisation pressure on conversion metrics and instead evaluate it on brand lift and assisted conversion contribution.
+        This synthetic case study is best read as a channel-performance and timing framework rather than proof of assisted attribution. The practical reporting implication is to separate media efficiency from destination conversion, compare spend-bearing channels on CPA, and monitor offline demand around launch.
       </p>
 
       <div class="grid-3" style="margin-top: 32px;">
         <div class="card">
           <div class="card-title">Reach Channels</div>
-          <div class="card-value accent" style="font-size:20px;margin-bottom:8px;">Evaluate on brand lift</div>
-          <div class="card-sub">Upper-funnel channels like TikTok should be measured on brand search index movement and assisted conversion share — not CPA alone, which will always look unfavourable relative to intent-driven channels.</div>
+          <div class="card-value accent" style="font-size:20px;margin-bottom:8px;">Evaluate on scale + handoff</div>
+          <div class="card-sub">For high-reach channels like TikTok, track reach, downstream clicks, and total membership contribution together instead of relying on a single efficiency metric.</div>
         </div>
         <div class="card">
-          <div class="card-title">Conversion Channels</div>
-          <div class="card-value positive" style="font-size:20px;margin-bottom:8px;">Evaluate on CPA efficiency</div>
-          <div class="card-sub">Paid search and email operate at the bottom of the funnel where intent is already established. CPA is the right efficiency metric here — and budget should follow conversion efficiency signals.</div>
+          <div class="card-title">Conversion Destination</div>
+          <div class="card-value positive" style="font-size:20px;margin-bottom:8px;">Keep Website separate</div>
+          <div class="card-sub">Website performance should be reviewed as destination conversion quality, not as a comparable paid or earned acquisition channel.</div>
         </div>
         <div class="card">
           <div class="card-title">Campaign Timing</div>
-          <div class="card-value warn" style="font-size:20px;margin-bottom:8px;">Model the 14-day lag</div>
-          <div class="card-sub">The predictable two-week offline lag between campaign exposure and gym membership uptake is a signal that can be modelled forward to improve crew readiness for membership intake surges.</div>
+          <div class="card-value warn" style="font-size:20px;margin-bottom:8px;">Plan for launch-week demand</div>
+          <div class="card-sub">Offline membership demand was strongest during the launch window, so staffing and follow-up offers should be timed around peak campaign moments rather than a fixed lag assumption.</div>
         </div>
       </div>
     </div>
@@ -978,41 +978,38 @@
   <section id="stack" class="page-section" style="border-bottom:none;">
     <div class="container">
       <p class="section-label">07 — Stack</p>
-      <h2 class="section-title">Python pipeline + Power BI data model</h2>
-      <p class="section-body">The project uses a Python-first data pipeline for generation, cleaning, and analysis, with a star-schema output layer designed for direct Power BI consumption.</p>
+      <h2 class="section-title">Packaged synthetic dataset + Power BI-friendly model</h2>
+      <p class="section-body">The repository ships raw and processed tables, a lightweight notebook entry point, and helper scripts for inspection. The reporting layer is Power BI-friendly, but the public repo does not expose a full end-to-end regeneration pipeline.</p>
 
       <div class="stack-tags">
         <span class="stack-tag">Python</span>
         <span class="stack-tag">pandas</span>
-        <span class="stack-tag">numpy</span>
-        <span class="stack-tag">matplotlib</span>
-        <span class="stack-tag">seaborn</span>
         <span class="stack-tag">Jupyter Notebooks</span>
         <span class="stack-tag">Power BI</span>
-        <span class="stack-tag">Star Schema Design</span>
-        <span class="stack-tag">Synthetic Data Generation</span>
+        <span class="stack-tag">Power BI-Friendly Tables</span>
+        <span class="stack-tag">Synthetic Data Design</span>
       </div>
 
       <div style="margin-top: 32px;">
         <div class="pipeline">
           <div class="pipeline-step">
             <div class="pipeline-step-inner">
-              <div class="pipeline-step-title">Generate</div>
-              <div class="pipeline-step-desc">Synthetic campaign, funnel, brand, and gym data with seeded reproducibility</div>
+              <div class="pipeline-step-title">Package</div>
+              <div class="pipeline-step-desc">Ship synthetic campaign, funnel, brand, and gym tables in raw and processed CSV form</div>
             </div>
           </div>
           <div class="pipeline-arrow">&#8594;</div>
           <div class="pipeline-step">
             <div class="pipeline-step-inner">
-              <div class="pipeline-step-title">Clean</div>
-              <div class="pipeline-step-desc">Transform raw events to analysis-ready tables with derived KPI fields</div>
+              <div class="pipeline-step-title">Inspect</div>
+              <div class="pipeline-step-desc">Review table structure and KPI fields through the notebook and helper scripts</div>
             </div>
           </div>
           <div class="pipeline-arrow">&#8594;</div>
           <div class="pipeline-step">
             <div class="pipeline-step-inner">
               <div class="pipeline-step-title">Structure</div>
-              <div class="pipeline-step-desc">Build star schema: fact_channel_daily + dimension and proxy tables</div>
+              <div class="pipeline-step-desc">Use `fact_channel_daily` plus supporting dimension and proxy tables for reporting</div>
             </div>
           </div>
           <div class="pipeline-arrow">&#8594;</div>
@@ -1059,7 +1056,7 @@ const BORDER = '#e2e8f0';
 Chart.defaults.font.family = "system-ui, -apple-system, sans-serif";
 Chart.defaults.color = '#6b7280';
 
-const channels = ['TikTok', 'Instagram', 'YouTube', 'Paid Search', 'Email'];
+const channels = ['TikTok', 'Instagram', 'X', 'TV Trailer', 'YouTube', 'Website'];
 
 // Chart 1: Impressions
 new Chart(document.getElementById('impressionsChart'), {
@@ -1068,7 +1065,7 @@ new Chart(document.getElementById('impressionsChart'), {
     labels: channels,
     datasets: [{
       label: 'Impressions (M)',
-      data: [4.2, 1.8, 1.1, 0.52, 0.28],
+      data: [223.94, 28.36, 11.35, 10.70, 8.73, 1.14],
       backgroundColor: [ACCENT, '#93c5fd', '#93c5fd', '#93c5fd', '#93c5fd'],
       borderRadius: 4,
       borderSkipped: false,
@@ -1080,7 +1077,7 @@ new Chart(document.getElementById('impressionsChart'), {
     plugins: {
       legend: { display: false },
       tooltip: {
-        callbacks: { label: ctx => ` ${ctx.parsed.y.toFixed(1)}M impressions` }
+        callbacks: { label: ctx => ` ${ctx.parsed.y.toFixed(2)}M impressions` }
       }
     },
     scales: {
@@ -1098,11 +1095,11 @@ new Chart(document.getElementById('impressionsChart'), {
 new Chart(document.getElementById('cpaChart'), {
   type: 'bar',
   data: {
-    labels: channels,
-    datasets: [{
-      label: 'CPA (R)',
-      data: [142, 98, 85, 52, 44],
-      backgroundColor: [WARN, '#fcd34d', '#fcd34d', POSITIVE, POSITIVE],
+      labels: ['TikTok', 'Instagram', 'YouTube', 'X', 'TV Trailer'],
+      datasets: [{
+        label: 'CPA (USD)',
+        data: [8.94, 12.82, 25.91, 60.37, 95.34],
+        backgroundColor: [POSITIVE, '#86efac', '#fcd34d', WARN, WARN],
       borderRadius: 4,
       borderSkipped: false,
     }]
@@ -1114,14 +1111,14 @@ new Chart(document.getElementById('cpaChart'), {
     plugins: {
       legend: { display: false },
       tooltip: {
-        callbacks: { label: ctx => ` R${ctx.parsed.x} per membership` }
+        callbacks: { label: ctx => ` $${ctx.parsed.x.toFixed(2)} per membership` }
       }
     },
     scales: {
       x: {
         border: { display: false },
         grid: { color: BORDER },
-        ticks: { callback: v => 'R' + v }
+        ticks: { callback: v => '$' + v }
       },
       y: { grid: { display: false }, border: { display: false } }
     }
@@ -1135,7 +1132,7 @@ new Chart(document.getElementById('funnelChart'), {
     labels: ['Impressions', 'Clicks (CTR)', 'Signups', 'Trials', 'Memberships'],
     datasets: [{
       label: 'Conversion %',
-      data: [100, 3.2, 1.4, 0.8, 0.35],
+      data: [100, 1.33, 0.10, 0.05, 0.013],
       backgroundColor: ['#bfdbfe', '#93c5fd', '#60a5fa', '#3b82f6', ACCENT],
       borderRadius: 4,
       borderSkipped: false,
@@ -1163,9 +1160,9 @@ new Chart(document.getElementById('funnelChart'), {
 });
 
 // Chart 4: Brand Search Index
-const weeks = ['Wk -4', 'Wk -3', 'Wk -2', 'Wk -1', 'Wk 0', 'Wk 1', 'Wk 2', 'Wk 3', 'Wk 4', 'Wk 5', 'Wk 6', 'Wk 7'];
-const brandData = [42, 45, 44, 46, 52, 64, 76, 84, 79, 71, 66, 62];
-const phaseColors = weeks.map((_, i) => i < 4 ? MUTED : i < 8 ? ACCENT : '#f59e0b');
+const weeks = ['Wk 1', 'Wk 2', 'Wk 3', 'Wk 4', 'Wk 5', 'Wk 6', 'Wk 7', 'Wk 8', 'Wk 9', 'Wk 10', 'Wk 11', 'Wk 12', 'Wk 13', 'Wk 14', 'Wk 15', 'Wk 16', 'Wk 17', 'Wk 18'];
+const brandData = [42.8, 41.9, 44.1, 41.5, 44.3, 57.8, 93.8, 93.5, 80.9, 70.6, 64.9, 48.2, 52.0, 48.7, 48.1, 50.9, 51.9, 51.5];
+const phaseColors = weeks.map((_, i) => i < 6 ? MUTED : i < 11 ? ACCENT : '#f59e0b');
 
 new Chart(document.getElementById('brandChart'), {
   type: 'line',
